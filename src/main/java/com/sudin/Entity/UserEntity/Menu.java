@@ -22,7 +22,7 @@ public class Menu {
     @Transient
     private MultipartFile foodImage;
 
-    private String indregients;
+    private String ingredients;
     private String category;
     private String rating;
 
@@ -36,12 +36,12 @@ public class Menu {
     public Menu() {
     }
 
-    public Menu(String name, boolean availability, String description, MultipartFile foodImage, String indregients, String category, String rating, List<Variant> variantList, List<MenuToCartItem> menuToCartItemList) {
+    public Menu(String name, boolean availability, String description, MultipartFile foodImage, String ingredients, String category, String rating, List<Variant> variantList, List<MenuToCartItem> menuToCartItemList) {
         this.name = name;
         this.availability = availability;
         this.description = description;
         this.foodImage = foodImage;
-        this.indregients = indregients;
+        this.ingredients = ingredients;
         this.category = category;
         this.rating = rating;
         this.variantList = variantList;
@@ -88,12 +88,12 @@ public class Menu {
         this.foodImage = foodImage;
     }
 
-    public String getIndregients() {
-        return indregients;
+    public String getIngredients() {
+        return ingredients;
     }
 
-    public void setIndregients(String indregients) {
-        this.indregients = indregients;
+    public void setIngredients(String ingredients) {
+        this.ingredients = ingredients;
     }
 
     public String getCategory() {

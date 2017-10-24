@@ -3,7 +3,6 @@ package com.sudin.Entity.UserEntity;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
 import java.util.List;
 
 @Entity
@@ -21,7 +20,7 @@ public class User {
 
     @Column(name="email",nullable = false,updatable = false)
     private String email;
-    private BigDecimal phoneNumber;
+    private String phoneNumber;
     private boolean enabled = true;
 
     @OneToOne(cascade = CascadeType.ALL,mappedBy = "user")
@@ -86,11 +85,11 @@ public class User {
         this.email = email;
     }
 
-    public BigDecimal getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(BigDecimal phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
