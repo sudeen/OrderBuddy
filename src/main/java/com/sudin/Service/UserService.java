@@ -4,5 +4,5 @@ import com.sudin.Entity.UserEntity.User;
 
 public interface UserService {
 
-    User createUser(User user);
+    void createUser(User user);
 }
