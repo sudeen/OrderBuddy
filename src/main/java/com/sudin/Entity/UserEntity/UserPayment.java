@@ -19,7 +19,7 @@ public class UserPayment {
 
     @ManyToOne
     @JoinColumn(name="user_id")
-    private User user;
+    private Users users;
 
     @OneToOne(cascade = CascadeType.ALL,mappedBy = "userPayment")
     private UserBilling userBilling;
@@ -27,7 +27,7 @@ public class UserPayment {
     public UserPayment() {
     }
 
-    public UserPayment(String type, String cardName, String cardNumber, int expiryMonth, int expiryYear, int cvc, String holderName, boolean defaultPayment, User user, UserBilling userBilling) {
+    public UserPayment(String type, String cardName, String cardNumber, int expiryMonth, int expiryYear, int cvc, String holderName, boolean defaultPayment, Users users, UserBilling userBilling) {
         this.type = type;
         this.cardName = cardName;
         CardNumber = cardNumber;
@@ -36,7 +36,7 @@ public class UserPayment {
         this.cvc = cvc;
         this.holderName = holderName;
         this.defaultPayment = defaultPayment;
-        this.user = user;
+        this.users = users;
         this.userBilling = userBilling;
     }
 
@@ -112,12 +112,12 @@ public class UserPayment {
         this.defaultPayment = defaultPayment;
     }
 
-    public User getUser() {
-        return user;
+    public Users getUsers() {
+        return users;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUsers(Users users) {
+        this.users = users;
     }
 
     public UserBilling getUserBilling() {

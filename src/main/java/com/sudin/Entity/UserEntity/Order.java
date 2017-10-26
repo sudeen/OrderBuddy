@@ -30,7 +30,7 @@ public class Order {
     private Payment payment;
 
     @ManyToOne
-    private User user;
+    private Users users;
 
 
 
@@ -90,11 +90,11 @@ public class Order {
         this.payment = payment;
     }
 
-    public User getUser() {
-        return user;
+    public Users getUsers() {
+        return users;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUsers(Users users) {
+        this.users = users;
     }
 }

@@ -1,8 +1,8 @@
 package com.sudin.Service;
 
-import com.sudin.Entity.UserEntity.User;
+import com.sudin.Entity.UserEntity.Users;
 
 public interface UserService {
 
-    void createUser(User user);
+    void createUser(Users users);
 }

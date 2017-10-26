@@ -1,7 +1,7 @@
 package com.sudin;
 
 import com.sudin.Entity.RestaurantEntity.Restaurant;
-import com.sudin.Entity.UserEntity.User;
+import com.sudin.Entity.UserEntity.Users;
 import com.sudin.Service.RestaurantService;
 import com.sudin.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,32 +12,33 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class BuddyApplication implements CommandLineRunner {
 
-	@Autowired
-	private UserService userService;
 
-	@Autowired
-	private RestaurantService restaurantService;
+    @Autowired
+    private UserService userService;
 
-	public static void main(String[] args) {
-		SpringApplication.run(BuddyApplication.class, args);
-	}
+    @Autowired
+    private RestaurantService restaurantService;
 
-	@Override
-	public void run(String... strings) throws Exception {
-		User user=new User();
-		user.setEmail("ranjitkarsudeen14@gmail.com");
-		user.setEnabled(true);
-		user.setFirstName("Sudin");
-		user.setLastName("Ranjitkar");
-		user.setPassword("12345");
-		user.setPhoneNumber("9849431839");
-		user.setUserName("skiips");
+    public static void main(String[] args) {
+        SpringApplication.run(BuddyApplication.class, args);
+    }
 
-		Restaurant restaurant=new Restaurant();
-		restaurant.setName("Order Buddy");
-		restaurant.setOpeningTime("10:00 AM");
-		restaurant.setClosingTime("8:00 PM");
-		userService.createUser(user);
-		restaurantService.createRestaurant(restaurant);
-	}
+    @Override
+    public void run(String... strings) throws Exception {
+        Users users = new Users();
+        users.setEmail("ranjitkarsudeen14@gmail.com");
+        users.setEnabled(true);
+        users.setFirstName("Sudin");
+        users.setLastName("Ranjitkar");
+        users.setPassword("12345");
+        users.setPhoneNumber("9849431839");
+        users.setUserName("skiips");
+
+        Restaurant restaurant = new Restaurant();
+        restaurant.setName("Order Buddy");
+        restaurant.setOpeningTime("10:00 AM");
+        restaurant.setClosingTime("8:00 PM");
+        userService.createUser(users);
+        restaurantService.createRestaurant(restaurant);
+    }
 }

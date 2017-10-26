@@ -1,6 +1,6 @@
 package com.sudin.Service.impls;
 
-import com.sudin.Entity.UserEntity.User;
+import com.sudin.Entity.UserEntity.Users;
 import com.sudin.Repository.UserRepository;
 import com.sudin.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,7 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public void createUser(User user) {
-        userRepository.save(user);
+    public void createUser(Users users) {
+        userRepository.save(users);
     }
 }

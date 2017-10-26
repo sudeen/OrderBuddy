@@ -19,15 +19,15 @@ public class ShoppingCart {
     private List<CartItem> cartItemList;
 
     @OneToOne(cascade = CascadeType.ALL)
-    private User user;
+    private Users users;
 
     public ShoppingCart() {
     }
 
-    public ShoppingCart(BigDecimal grandTotal, List<CartItem> cartItemList, User user) {
+    public ShoppingCart(BigDecimal grandTotal, List<CartItem> cartItemList, Users users) {
         GrandTotal = grandTotal;
         this.cartItemList = cartItemList;
-        this.user = user;
+        this.users = users;
     }
 
     public Long getId() {
@@ -54,11 +54,11 @@ public class ShoppingCart {
         this.cartItemList = cartItemList;
     }
 
-    public User getUser() {
-        return user;
+    public Users getUsers() {
+        return users;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUsers(Users users) {
+        this.users = users;
     }
 }
