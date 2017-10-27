@@ -7,9 +7,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HomeController {
 
-    @RequestMapping(value = "/")
+    @RequestMapping(value = "/home")
     public String home(){
         return "Hello Order Buddy";
     }
+
 
 }
