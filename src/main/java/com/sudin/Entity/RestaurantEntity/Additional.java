@@ -6,6 +6,8 @@ import java.util.List;
 @Entity
 public class Additional {
 
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
