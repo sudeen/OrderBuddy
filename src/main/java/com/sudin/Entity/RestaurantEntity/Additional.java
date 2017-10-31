@@ -7,7 +7,6 @@ import java.util.List;
 public class Additional {
 
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -23,6 +22,16 @@ public class Additional {
     private String ratings;
     private boolean parkingAvailability;
 
+    public Additional() {
+    }
+
+    public Additional(Restaurant restaurant, int deliveryCost, int tax, String ratings, boolean parkingAvailability) {
+        this.restaurant = restaurant;
+        this.deliveryCost = deliveryCost;
+        this.tax = tax;
+        this.ratings = ratings;
+        this.parkingAvailability = parkingAvailability;
+    }
 
     public Long getId() {
         return id;

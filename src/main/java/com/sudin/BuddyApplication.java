@@ -2,8 +2,8 @@ package com.sudin;
 
 import com.sudin.Entity.RestaurantEntity.Restaurant;
 import com.sudin.Entity.UserEntity.Users;
-import com.sudin.Service.RestaurantService;
-import com.sudin.Service.UserService;
+import com.sudin.Service.RestaurantServices.RestaurantService;
+import com.sudin.Service.UserServices.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

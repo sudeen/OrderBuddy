@@ -14,6 +14,14 @@ public class TableDesk {
     @ManyToOne
     private Restaurant restaurant;
 
+    public TableDesk() {
+    }
+
+    public TableDesk(int capacity, Restaurant restaurant) {
+        this.capacity = capacity;
+        this.restaurant = restaurant;
+    }
+
     public Long getId() {
         return id;
     }

@@ -20,6 +20,24 @@ public class Contact {
     @OneToOne
     private Restaurant restaurant;
 
+    public Contact() {
+    }
+
+    public Contact(String email, String landlineNumber, String mobileNumber, String location) {
+        this.email = email;
+        this.landlineNumber = landlineNumber;
+        this.mobileNumber = mobileNumber;
+        this.location = location;
+    }
+
+    public Contact(String email, String landlineNumber, String mobileNumber, String location, Restaurant restaurant) {
+        this.email = email;
+        this.landlineNumber = landlineNumber;
+        this.mobileNumber = mobileNumber;
+        this.location = location;
+        this.restaurant = restaurant;
+    }
+
     public Long getId() {
         return id;
     }

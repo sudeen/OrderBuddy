@@ -1,4 +1,4 @@
-package com.sudin.Service;
+package com.sudin.Service.UserServices;
 
 import com.sudin.Entity.UserEntity.Users;
 

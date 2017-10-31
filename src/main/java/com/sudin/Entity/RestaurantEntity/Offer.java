@@ -21,6 +21,14 @@ public class Offer {
     @ManyToOne
     private Restaurant restaurant;
 
+    public Offer() {
+    }
+
+    public Offer(String title, String description) {
+        this.title = title;
+        this.description = description;
+    }
+
     public Long getId() {
         return id;
     }

@@ -1,8 +1,8 @@
-package com.sudin.Service.impls;
+package com.sudin.Service.impls.UserServiceImpls;
 
 import com.sudin.Entity.UserEntity.Users;
-import com.sudin.Repository.UserRepository;
-import com.sudin.Service.UserService;
+import com.sudin.Repository.UserRepository.UserRepository;
+import com.sudin.Service.UserServices.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

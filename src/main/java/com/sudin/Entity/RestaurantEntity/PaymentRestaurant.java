@@ -19,6 +19,19 @@ public class PaymentRestaurant {
     @ManyToOne
     private Additional additional;
 
+    public PaymentRestaurant() {
+    }
+
+    public PaymentRestaurant(String type, String cardName, String cardNumber, int expiryMonth, int expiryYear, int cvc, String holderName) {
+        this.type = type;
+        this.cardName = cardName;
+        CardNumber = cardNumber;
+        this.expiryMonth = expiryMonth;
+        this.expiryYear = expiryYear;
+        this.cvc = cvc;
+        this.holderName = holderName;
+    }
+
     public Long getId() {
         return id;
     }

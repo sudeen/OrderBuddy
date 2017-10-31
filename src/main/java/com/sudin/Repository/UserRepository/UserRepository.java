@@ -1,4 +1,4 @@
-package com.sudin.Repository;
+package com.sudin.Repository.UserRepository;
 
 import com.sudin.Entity.UserEntity.Users;
 import org.springframework.data.repository.CrudRepository;
