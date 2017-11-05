@@ -76,7 +76,7 @@ public class RestaurantController {
                 return respond("Fail", "Failed to load", null);
             }
         } else {
-            System.out.println("doesnt exist");
+            System.out.println("Does not exist");
             return respond("Fail", "Failed to load", null);
 
         }
