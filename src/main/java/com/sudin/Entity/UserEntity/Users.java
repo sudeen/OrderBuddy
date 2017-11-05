@@ -1,11 +1,10 @@
 package com.sudin.Entity.UserEntity;
 
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
+@Table(name = "users",catalog = "OrderBuddy")
 public class Users {
 
     @Id
@@ -23,17 +22,17 @@ public class Users {
     private String phoneNumber;
     private boolean enabled = true;
 
-    @OneToOne(cascade = CascadeType.ALL,mappedBy = "users")
-    private ShoppingCart shoppingCart;
-
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "users")
-    private List<UserPayment> userPaymentList;
-
-    @OneToMany(mappedBy = "users")
-    private List<Order> orderList;
-
-    @Transient
-    private MultipartFile userImage;
+//    @OneToOne(cascade = CascadeType.ALL,mappedBy = "users")
+//    private ShoppingCart shoppingCart;
+//
+//    @OneToMany(cascade = CascadeType.ALL,mappedBy = "users")
+//    private List<UserPayment> userPaymentList;
+//
+//    @OneToMany(mappedBy = "users")
+//    private List<Order> orderList;
+//
+//    @Transient
+//    private MultipartFile userImage;
 
 
 
@@ -101,35 +100,35 @@ public class Users {
         this.enabled = enabled;
     }
 
-    public ShoppingCart getShoppingCart() {
-        return shoppingCart;
-    }
-
-    public void setShoppingCart(ShoppingCart shoppingCart) {
-        this.shoppingCart = shoppingCart;
-    }
-
-    public List<UserPayment> getUserPaymentList() {
-        return userPaymentList;
-    }
-
-    public void setUserPaymentList(List<UserPayment> userPaymentList) {
-        this.userPaymentList = userPaymentList;
-    }
-
-    public List<Order> getOrderList() {
-        return orderList;
-    }
-
-    public void setOrderList(List<Order> orderList) {
-        this.orderList = orderList;
-    }
-
-    public MultipartFile getUserImage() {
-        return userImage;
-    }
-
-    public void setUserImage(MultipartFile userImage) {
-        this.userImage = userImage;
-    }
+//    public ShoppingCart getShoppingCart() {
+//        return shoppingCart;
+//    }
+//
+//    public void setShoppingCart(ShoppingCart shoppingCart) {
+//        this.shoppingCart = shoppingCart;
+//    }
+//
+//    public List<UserPayment> getUserPaymentList() {
+//        return userPaymentList;
+//    }
+//
+//    public void setUserPaymentList(List<UserPayment> userPaymentList) {
+//        this.userPaymentList = userPaymentList;
+//    }
+//
+//    public List<Order> getOrderList() {
+//        return orderList;
+//    }
+//
+//    public void setOrderList(List<Order> orderList) {
+//        this.orderList = orderList;
+//    }
+//
+//    public MultipartFile getUserImage() {
+//        return userImage;
+//    }
+//
+//    public void setUserImage(MultipartFile userImage) {
+//        this.userImage = userImage;
+//    }
 }

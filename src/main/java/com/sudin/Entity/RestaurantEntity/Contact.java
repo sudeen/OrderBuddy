@@ -1,6 +1,11 @@
 package com.sudin.Entity.RestaurantEntity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import javax.persistence.*;
+import java.util.Date;
 
 
 @Entity
@@ -8,6 +13,7 @@ public class Contact {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "contact_id")
     private Long id;
 
     @Column(name="email",nullable = false,updatable = false)
@@ -17,24 +23,40 @@ public class Contact {
     private String mobileNumber;
     private String location;
 
-    @OneToOne
+    @JsonIgnore
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "created_date")
+    private Date createdDate;
+
+    @JsonIgnore
+    @UpdateTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "modified_date")
+    private Date modifiedDate;
+
+    @JsonIgnore
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;
+
 
     public Contact() {
     }
 
-    public Contact(String email, String landlineNumber, String mobileNumber, String location) {
-        this.email = email;
-        this.landlineNumber = landlineNumber;
-        this.mobileNumber = mobileNumber;
-        this.location = location;
+    public Date getCreatedDate() {
+        return createdDate;
     }
 
-    public Contact(String email, String landlineNumber, String mobileNumber, String location, Restaurant restaurant) {
-        this.email = email;
-        this.landlineNumber = landlineNumber;
-        this.mobileNumber = mobileNumber;
-        this.location = location;
+    public Date getModifiedDate() {
+        return modifiedDate;
+    }
+
+    public Restaurant getRestaurant() {
+        return restaurant;
+    }
+
+    public void setRestaurant(Restaurant restaurant) {
         this.restaurant = restaurant;
     }
 
@@ -78,11 +100,4 @@ public class Contact {
         this.location = location;
     }
 
-    public Restaurant getRestaurant() {
-        return restaurant;
-    }
-
-    public void setRestaurant(Restaurant restaurant) {
-        this.restaurant = restaurant;
-    }
 }

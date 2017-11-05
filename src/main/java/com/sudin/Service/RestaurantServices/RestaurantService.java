@@ -1,6 +1,7 @@
 package com.sudin.Service.RestaurantServices;
 
 import com.sudin.Entity.RestaurantEntity.Restaurant;
+import com.sudin.Pojo.RestaurantPojo;
 
 import java.util.List;
 
@@ -17,4 +18,6 @@ public interface RestaurantService {
     Restaurant save(Restaurant restaurant);
 
     void remove(Long id);
+
+//    Restaurant update(RestaurantPojo restaurantPojo);
 }

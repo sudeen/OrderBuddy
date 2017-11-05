@@ -1,57 +1,53 @@
 package com.sudin.Entity.RestaurantEntity;
 
-import org.springframework.web.multipart.MultipartFile;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
-import java.io.Serializable;
-import java.util.List;
+import java.util.Date;
 
 @Entity
-public class Restaurant implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+public class Restaurant {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "restaurant_id")
     private Long id;
 
     private String name;
     private String openingTime;
     private String closingTime;
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "restaurant")
-    private List<TableDesk> tablesList;
+    @JsonIgnore
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "created_date")
+    private Date createdDate;
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "restaurant")
-    private List<Offer> offerList;
+    @JsonIgnore
+    @UpdateTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "modified_date")
+    private Date modifiedDate;
 
-    @OneToOne(cascade = CascadeType.ALL,mappedBy = "restaurant")
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "contact_id")
     private Contact contactList;
 
-    @OneToOne(cascade = CascadeType.ALL,mappedBy = "restaurant")
-    private Additional additionalList;
-
-    @Transient
-    private MultipartFile restaurantImage;
 
     public Restaurant() {
     }
 
-    public Restaurant(String name, String openingTime, String closingTime) {
-        this.name = name;
-        this.openingTime = openingTime;
-        this.closingTime = closingTime;
+
+
+    public Contact getContactList() {
+        return contactList;
     }
 
-    public Restaurant(String name, String openingTime, String closingTime, List<TableDesk> tablesList, List<Offer> offerList, Contact contactList, Additional additionalList) {
-        this.name = name;
-        this.openingTime = openingTime;
-        this.closingTime = closingTime;
-        this.tablesList = tablesList;
-        this.offerList = offerList;
+    public void setContactList(Contact contactList) {
         this.contactList = contactList;
-        this.additionalList = additionalList;
     }
 
     public Long getId() {
@@ -84,45 +80,5 @@ public class Restaurant implements Serializable {
 
     public void setClosingTime(String closingTime) {
         this.closingTime = closingTime;
-    }
-
-    public List<TableDesk> getTablesList() {
-        return tablesList;
-    }
-
-    public void setTablesList(List<TableDesk> tablesList) {
-        this.tablesList = tablesList;
-    }
-
-    public List<Offer> getOfferList() {
-        return offerList;
-    }
-
-    public void setOfferList(List<Offer> offerList) {
-        this.offerList = offerList;
-    }
-
-    public Contact getContactList() {
-        return contactList;
-    }
-
-    public void setContactList(Contact contactList) {
-        this.contactList = contactList;
-    }
-
-    public Additional getAdditionalList() {
-        return additionalList;
-    }
-
-    public void setAdditionalList(Additional additionalList) {
-        this.additionalList = additionalList;
-    }
-
-    public MultipartFile getRestaurantImage() {
-        return restaurantImage;
-    }
-
-    public void setRestaurantImage(MultipartFile restaurantImage) {
-        this.restaurantImage = restaurantImage;
     }
 }

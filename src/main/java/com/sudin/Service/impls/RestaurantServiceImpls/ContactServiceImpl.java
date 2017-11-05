@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -21,36 +22,17 @@ public class ContactServiceImpl implements ContactService {
     @Autowired
     private ContactRepository contactRepository;
 
-    @Autowired
-    private RestaurantRepository restaurantRepository;
+
 
 
     @Override
     public Contact findById(Long id) {
-        return null;
+        return contactRepository.findOne(id);
     }
 
     @Override
-    public Contact save(Contact contact, Set<Restaurant> restaurants) {
-        Contact contact1 = contactRepository.findOne(contact.getId());
-
-        if (contact1 != null) {
-            LOG.info("contact {} already exists. Nothing will be done", contact1.getId());
-        } else {
-            for (Restaurant restaurants1 : restaurants) {
-                restaurantRepository.save(restaurants1);
-            }
-            Restaurant restaurant=new Restaurant();
-            restaurant.setContactList(contact);
-//            contact.getRestaurant();
-            contact1=contactRepository.save(contact);
-        }
-//        contact.setRestaurant(restaurant);
-//        contact1 = contactRepository.save(contact);
-//        return contact1;
-//        Restaurant restaurant=restaurantRepository.findOne(contact.getRestaurant().getId());
-//        Contact contact1=contactRepository.findOne(contact.getRestaurant().getId());
-        return contact1;
+    public Contact save(Contact contact) {
+        return contactRepository.save(contact);
     }
 
     @Override

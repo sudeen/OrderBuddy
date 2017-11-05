@@ -1,7 +1,11 @@
 package com.sudin.Controllers.RestaurantControllers;
 
+import com.sudin.Entity.RestaurantEntity.Contact;
 import com.sudin.Entity.RestaurantEntity.Restaurant;
 import com.sudin.Pojo.GlobalResponse;
+import com.sudin.Pojo.RestaurantPojo;
+import com.sudin.Repository.RestaurantRepository.ContactRepository;
+import com.sudin.Repository.RestaurantRepository.RestaurantRepository;
 import com.sudin.Service.RestaurantServices.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -13,9 +17,14 @@ import java.util.List;
 @RequestMapping("/restaurant")
 public class RestaurantController {
 
+    @Autowired
+    private RestaurantRepository restaurantRepository;
 
     @Autowired
     private RestaurantService restaurantService;
+
+    @Autowired
+    private ContactRepository contactRepository;
 
     //TO MAKE DEFAULT RESPOND
     private GlobalResponse respond(String status, String message, Object data) {
@@ -44,21 +53,50 @@ public class RestaurantController {
         }
     }
 
-    @RequestMapping(value = "/saveRestaurant",consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
+    @RequestMapping(value = "/saveRestaurant", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
     @ResponseBody
-    public GlobalResponse saveRestaurant(@RequestBody Restaurant restaurant){
-        try {
-            return respond("Success","Successfully loaded",restaurantService.save(restaurant));
-        } catch (Exception e) {
-            e.printStackTrace();
-            return respond("Fail","Failed to load",null);
+    public GlobalResponse saveRestaurant(@RequestBody RestaurantPojo restaurantPojo) {
+        Restaurant restaurant = new Restaurant();
+        restaurant.setClosingTime(restaurantPojo.getClosingTime());
+        restaurant.setName(restaurantPojo.getName());
+        restaurant.setOpeningTime(restaurantPojo.getOpeningTime());
+        Contact contact = contactRepository.findOne(restaurantPojo.getContactId());
+        restaurant.setContactList(contact);
+        if (contact != null) {
+            try {
+                return respond("Success", "Successfully loaded", restaurantService.save(restaurant));
+            } catch (Exception e) {
+                e.printStackTrace();
+                return respond("Fail", "Failed to load", null);
+            }
+        } else {
+            System.out.println("doesnt exist");
+            return respond("Fail", "Failed to load", null);
+
         }
+
     }
 
-    @RequestMapping(value = "/deleteRestaurantById/{id}",method = RequestMethod.DELETE)
+    @RequestMapping(value = "/deleteRestaurantById/{id}", method = RequestMethod.DELETE)
     @ResponseBody
-    public void deleteRestaurant(@PathVariable Long id){
+    public void deleteRestaurant(@PathVariable Long id) {
         restaurantService.remove(id);
+    }
+
+
+    @RequestMapping(value = "/updateRestaurant/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.PUT)
+    @ResponseBody
+    public Restaurant updateRestaurant(@RequestBody RestaurantPojo restaurantPojo,
+                                           @PathVariable("id") Long id) {
+
+        Restaurant restaurant=new Restaurant();
+        restaurant.setId(id);
+        restaurant.setName(restaurantPojo.getName());
+        restaurant.setOpeningTime(restaurantPojo.getOpeningTime());
+        restaurant.setClosingTime(restaurantPojo.getClosingTime());
+        Contact contact = contactRepository.findOne(restaurantPojo.getContactId());
+        restaurant.setContactList(contact);
+        return restaurantService.save(restaurant);
     }
 
 }

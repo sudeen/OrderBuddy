@@ -1,6 +1,7 @@
 package com.sudin.Service.impls.RestaurantServiceImpls;
 
 import com.sudin.Entity.RestaurantEntity.Restaurant;
+import com.sudin.Pojo.RestaurantPojo;
 import com.sudin.Repository.RestaurantRepository.RestaurantRepository;
 import com.sudin.Service.RestaurantServices.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,4 +55,9 @@ public class RestaurantServiceImpl implements RestaurantService {
     public void remove(Long id) {
         restaurantRepository.delete(id);
     }
+
+//    @Override
+//    public Restaurant update(RestaurantPojo restaurantPojo) {
+//        return restaurantRepository.save(restaurantPojo);
+//    }
 }
