@@ -2,6 +2,8 @@ package com.sudin.Pojo;
 
 public class ContactPojo {
 
+    private Long contactId;
+
     private String email;
 
     private String landlineNumber;
@@ -9,6 +11,14 @@ public class ContactPojo {
     private String mobileNumber;
 
     private String location;
+
+    public Long getContactId() {
+        return contactId;
+    }
+
+    public void setContactId(Long contactId) {
+        this.contactId = contactId;
+    }
 
     public String getEmail() {
         return email;

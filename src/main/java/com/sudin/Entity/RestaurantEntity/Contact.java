@@ -16,7 +16,7 @@ public class Contact {
     @Column(name = "contact_id")
     private Long id;
 
-    @Column(name="email",nullable = false,updatable = false)
+    @Column(name="email")
     private String email;
 
     private String landlineNumber;

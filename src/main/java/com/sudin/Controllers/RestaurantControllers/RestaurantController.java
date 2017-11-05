@@ -7,6 +7,9 @@ import com.sudin.Pojo.RestaurantPojo;
 import com.sudin.Repository.RestaurantRepository.ContactRepository;
 import com.sudin.Repository.RestaurantRepository.RestaurantRepository;
 import com.sudin.Service.RestaurantServices.RestaurantService;
+import com.sudin.Service.impls.RestaurantServiceImpls.ContactServiceImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +19,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/restaurant")
 public class RestaurantController {
+
+    private static final Logger LOG = LoggerFactory.getLogger(RestaurantController.class);
+
 
     @Autowired
     private RestaurantRepository restaurantRepository;
@@ -86,17 +92,30 @@ public class RestaurantController {
 
     @RequestMapping(value = "/updateRestaurant/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.PUT)
     @ResponseBody
-    public Restaurant updateRestaurant(@RequestBody RestaurantPojo restaurantPojo,
+    public GlobalResponse updateRestaurant(@RequestBody RestaurantPojo restaurantPojo,
                                            @PathVariable("id") Long id) {
 
-        Restaurant restaurant=new Restaurant();
-        restaurant.setId(id);
-        restaurant.setName(restaurantPojo.getName());
-        restaurant.setOpeningTime(restaurantPojo.getOpeningTime());
-        restaurant.setClosingTime(restaurantPojo.getClosingTime());
-        Contact contact = contactRepository.findOne(restaurantPojo.getContactId());
-        restaurant.setContactList(contact);
-        return restaurantService.save(restaurant);
+        if (restaurantPojo.getContactId() != null) {
+            try {
+                Restaurant restaurant = new Restaurant();
+                restaurant.setId(id);
+                restaurant.setName(restaurantPojo.getName());
+                restaurant.setOpeningTime(restaurantPojo.getOpeningTime());
+                restaurant.setClosingTime(restaurantPojo.getClosingTime());
+                Contact contact = contactRepository.findOne(restaurantPojo.getContactId());
+                restaurant.setContactList(contact);
+                return respond("Success", "Restaurant id " + id + " Updated", restaurantService.save(restaurant));
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                return respond("Fail", "Failed to Load", null);
+            }
+
+        } else {
+            LOG.info("Contact Not available");
+            return respond("Fail", "Failed to Load", null);
+        }
+
     }
 
 }

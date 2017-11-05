@@ -38,12 +38,12 @@ public class ContactController {
 
     @RequestMapping(value = "/findAllContact")
     @ResponseBody
-    public GlobalResponse findAllContact(){
+    public GlobalResponse findAllContact() {
         try {
-            return respond("success","All Contacts",contactRepository.findAll());
+            return respond("success", "All Contacts", contactRepository.findAll());
         } catch (Exception e) {
             e.printStackTrace();
-            return respond("Fail","Failed to Load",null);
+            return respond("Fail", "Failed to Load", null);
         }
     }
 
@@ -69,7 +69,7 @@ public class ContactController {
     @ResponseBody
     public GlobalResponse getContactById(@PathVariable("id") Long id) {
         try {
-            return respond("Success", "Contact Id " +id, contactService.findById(id));
+            return respond("Success", "Contact Id " + id, contactService.findById(id));
         } catch (Exception e) {
             e.printStackTrace();
             return respond("Fail", "Failed to load", null);
@@ -79,28 +79,21 @@ public class ContactController {
 
     @RequestMapping(value = "/updateContact/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.PUT)
     @ResponseBody
-    public Contact updateContact(@RequestBody ContactPojo contactPojo,
-                                       @PathVariable("id") Long id) {
+    public GlobalResponse updateContact(@RequestBody ContactPojo contactPojo,
+                                        @PathVariable("id") Long id) {
 
-//        Contact contact=entityManager.find(Contact.class,id);
-//        entityManager.getTransaction().begin();
-//        contact.setEmail(contactPojo.getEmail());
-//        contact.setMobileNumber(contactPojo.getMobileNumber());
-//        contact.setLandlineNumber(contactPojo.getLandlineNumber());
-//        contact.setLocation(contactPojo.getLocation());
-//        entityManager.getTransaction().commit();
-
-        Contact contact=new Contact();
-        contact.setId(id);
-        contact.setEmail(contactPojo.getEmail());
-        contact.setMobileNumber(contactPojo.getMobileNumber());
-        contact.setLandlineNumber(contactPojo.getLandlineNumber());
-        contact.setLocation(contactPojo.getLocation());
-
-//        Restaurant restaurant = restaurantRepository.findOne(contactPojo.getRestaurantId());
-//        contact.setRestaurant(restaurant);
-//        restaurant.setContactList(contact);
-        return contactService.save(contact);
+        try {
+            Contact contact = new Contact();
+            contact.setId(contactPojo.getContactId());
+            contact.setEmail(contactPojo.getEmail());
+            contact.setMobileNumber(contactPojo.getMobileNumber());
+            contact.setLandlineNumber(contactPojo.getLandlineNumber());
+            contact.setLocation(contactPojo.getLocation());
+            return respond("Success", "Contact " + id + " Updated", contactService.save(contact));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return respond("Fail", "Failed to Load", null);
+        }
     }
 
 
