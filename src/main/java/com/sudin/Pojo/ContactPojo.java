@@ -3,13 +3,9 @@ package com.sudin.Pojo;
 public class ContactPojo {
 
     private Long contactId;
-
     private String email;
-
     private String landlineNumber;
-
     private String mobileNumber;
-
     private String location;
 
     public Long getContactId() {

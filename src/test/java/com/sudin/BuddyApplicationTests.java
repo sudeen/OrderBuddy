@@ -1,8 +1,7 @@
 package com.sudin;
 
 import com.google.gson.Gson;
-import com.sudin.Entity.RestaurantEntity.Contact;
-import com.sudin.Entity.RestaurantEntity.Restaurant;
+import com.sudin.Entity.Restaurant;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
