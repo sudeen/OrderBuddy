@@ -8,15 +8,14 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-public class Tables {
+public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "table_id")
+    @Column(name = "category_id")
     private Long id;
 
-    @Column(name = "capacity")
-    private int capacity;
+    private String name;
 
     @OneToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "restaurant_id")
@@ -34,7 +33,7 @@ public class Tables {
     @Column(name = "modified_date")
     private Date modifiedDate;
 
-    public Tables() {
+    public Category() {
     }
 
     public Long getId() {
@@ -45,12 +44,12 @@ public class Tables {
         this.id = id;
     }
 
-    public int getCapacity() {
-        return capacity;
+    public String getName() {
+        return name;
     }
 
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Restaurant getRestaurant() {

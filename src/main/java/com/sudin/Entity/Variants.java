@@ -8,19 +8,15 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-public class Tables {
+public class Variants {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "table_id")
+    @Column(name = "variant_id")
     private Long id;
 
-    @Column(name = "capacity")
-    private int capacity;
-
-    @OneToOne(cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "restaurant_id")
-    private Restaurant restaurant;
+    @Column(unique = true)
+    private String name;
 
     @JsonIgnore
     @CreationTimestamp
@@ -34,7 +30,7 @@ public class Tables {
     @Column(name = "modified_date")
     private Date modifiedDate;
 
-    public Tables() {
+    public Variants() {
     }
 
     public Long getId() {
@@ -45,20 +41,12 @@ public class Tables {
         this.id = id;
     }
 
-    public int getCapacity() {
-        return capacity;
+    public String getName() {
+        return name;
     }
 
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
-    }
-
-    public Restaurant getRestaurant() {
-        return restaurant;
-    }
-
-    public void setRestaurant(Restaurant restaurant) {
-        this.restaurant = restaurant;
+    public void setName(String name) {
+        this.name = name;
     }
 
 }

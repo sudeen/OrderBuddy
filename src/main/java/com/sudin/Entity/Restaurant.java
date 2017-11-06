@@ -38,14 +38,6 @@ public class Restaurant {
     public Restaurant() {
     }
 
-    public Contact getContact() {
-        return contact;
-    }
-
-    public void setContact(Contact contact) {
-        this.contact = contact;
-    }
-
     public Long getId() {
         return id;
     }
@@ -76,5 +68,13 @@ public class Restaurant {
 
     public void setClosingTime(String closingTime) {
         this.closingTime = closingTime;
+    }
+
+    public Contact getContact() {
+        return contact;
+    }
+
+    public void setContact(Contact contact) {
+        this.contact = contact;
     }
 }

@@ -37,14 +37,6 @@ public class Contact {
     public Contact() {
     }
 
-    public Date getCreatedDate() {
-        return createdDate;
-    }
-
-    public Date getModifiedDate() {
-        return modifiedDate;
-    }
-
     public Long getId() {
         return id;
     }

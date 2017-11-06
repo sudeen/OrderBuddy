@@ -17,7 +17,7 @@ public class ContactController {
     @Autowired
     ContactService contactService;
 
-    @RequestMapping(value = "/findAllContact")
+    @RequestMapping(value = "/findAll")
     @ResponseBody
     public GlobalResponse findAllContact() {
         try {
@@ -28,7 +28,18 @@ public class ContactController {
         }
     }
 
-    @RequestMapping(value = "/addContact", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
+    @RequestMapping(value = "/findById/{id}", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
+    @ResponseBody
+    public GlobalResponse getContactById(@PathVariable("id") Long contactId) {
+        try {
+            return BaseUtils.respond(Constant.SUCCESS_MESSAGE, "Contact Id " + contactId, contactService.findById(contactId));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return BaseUtils.respond(Constant.ERROR_MESSAGE, "Contact not found", null);
+        }
+    }
+
+    @RequestMapping(value = "/add", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
     @ResponseBody
     public GlobalResponse addContact(@RequestBody Contact contact) {
         Contact c = contactService.findByEmail(contact.getEmail());
@@ -44,24 +55,13 @@ public class ContactController {
         }
     }
 
-    @RequestMapping(value = "/deleteContact/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
     @ResponseBody
     public void deleteContact(@PathVariable Long id) {
         contactService.remove(id);
     }
 
-    @RequestMapping(value = "/findContact/{id}", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
-    @ResponseBody
-    public GlobalResponse getContactById(@PathVariable("id") Long contactId) {
-        try {
-            return BaseUtils.respond(Constant.SUCCESS_MESSAGE, "Contact Id " + contactId, contactService.findById(contactId));
-        } catch (Exception e) {
-            e.printStackTrace();
-            return BaseUtils.respond(Constant.ERROR_MESSAGE, "Contact not found", null);
-        }
-    }
-
-    @RequestMapping(value = "/updateContact/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.PUT)
+    @RequestMapping(value = "/update/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.PUT)
     @ResponseBody
     public GlobalResponse updateContact(@RequestBody ContactPojo contactPojo, @PathVariable("id") Long id) {
         Contact currentContact = contactService.findById(id);

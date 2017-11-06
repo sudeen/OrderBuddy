@@ -21,7 +21,7 @@ public class TableController {
     @Autowired
     RestaurantService restaurantService;
 
-    @RequestMapping(value = "/findAllTable")
+    @RequestMapping(value = "/findAll")
     @ResponseBody
     public GlobalResponse findAllTable() {
         try {
@@ -32,30 +32,30 @@ public class TableController {
         }
     }
 
-    @RequestMapping(value = "/addTable/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
+    @RequestMapping(value = "/findById/{id}", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
     @ResponseBody
-    public GlobalResponse addTable(@RequestBody Tables Tables, @PathVariable("id") Long restaurantId) {
-        return BaseUtils.respond(Constant.ERROR_MESSAGE, "Module not added", null);
-    }
-
-    @RequestMapping(value = "/deleteTable/{id}", method = RequestMethod.DELETE)
-    @ResponseBody
-    public void deleteTable(@PathVariable Long id) {
-        tableService.remove(id);
-    }
-
-    @RequestMapping(value = "/findTable/{id}", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
-    @ResponseBody
-    public GlobalResponse getTableById(@PathVariable("id") Long TableId) {
+    public GlobalResponse getTableById(@PathVariable("id") Long tableId) {
         try {
-            return BaseUtils.respond(Constant.SUCCESS_MESSAGE, "Tables Id " + TableId, tableService.findById(TableId));
+            return BaseUtils.respond(Constant.SUCCESS_MESSAGE, "Tables Id " + tableId, tableService.findById(tableId));
         } catch (Exception e) {
             e.printStackTrace();
             return BaseUtils.respond(Constant.ERROR_MESSAGE, "Tables not found", null);
         }
     }
 
-    @RequestMapping(value = "/updateTable/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.PUT)
+    @RequestMapping(value = "/add/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
+    @ResponseBody
+    public GlobalResponse addTable(@RequestBody Tables table, @PathVariable("id") Long restaurantId) {
+        return BaseUtils.respond(Constant.ERROR_MESSAGE, "Module not added", null);
+    }
+
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
+    @ResponseBody
+    public void deleteTable(@PathVariable Long id) {
+        tableService.remove(id);
+    }
+
+    @RequestMapping(value = "/update/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.PUT)
     @ResponseBody
     public GlobalResponse updateTable(@RequestBody TablePojo tablePojo, @PathVariable("id") Long id) {
         Tables currentTables = tableService.findById(id);
