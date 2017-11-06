@@ -1,5 +1,7 @@
 package com.sudin.Utils;
 
+import com.sudin.Pojo.GlobalResponse;
+
 public class BaseUtils {
 
     // Returns not null value.
@@ -9,5 +11,9 @@ public class BaseUtils {
         } else {
             return receivedValue;
         }
+    }
+
+    public static GlobalResponse respond(String status, String message, Object data) {
+        return new GlobalResponse(status, message, data);
     }
 }

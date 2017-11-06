@@ -7,7 +7,6 @@ import org.hibernate.annotations.UpdateTimestamp;
 import javax.persistence.*;
 import java.util.Date;
 
-
 @Entity
 public class Contact {
 
@@ -35,12 +34,6 @@ public class Contact {
     @Column(name = "modified_date")
     private Date modifiedDate;
 
-    @JsonIgnore
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "restaurant_id")
-    private Restaurant restaurant;
-
-
     public Contact() {
     }
 
@@ -50,14 +43,6 @@ public class Contact {
 
     public Date getModifiedDate() {
         return modifiedDate;
-    }
-
-    public Restaurant getRestaurant() {
-        return restaurant;
-    }
-
-    public void setRestaurant(Restaurant restaurant) {
-        this.restaurant = restaurant;
     }
 
     public Long getId() {

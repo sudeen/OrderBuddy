@@ -1,6 +1,5 @@
 package com.sudin.Entity;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -32,20 +31,19 @@ public class Restaurant {
     @Column(name = "modified_date")
     private Date modifiedDate;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "contact_id")
-    private Contact contactList;
-
+    private Contact contact;
 
     public Restaurant() {
     }
 
-    public Contact getContactList() {
-        return contactList;
+    public Contact getContact() {
+        return contact;
     }
 
-    public void setContactList(Contact contactList) {
-        this.contactList = contactList;
+    public void setContact(Contact contact) {
+        this.contact = contact;
     }
 
     public Long getId() {

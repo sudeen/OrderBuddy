@@ -9,7 +9,7 @@ public interface UserService {
 
     Users findById(Long id);
 
-    Users save(Users contact);
+    Users save(Users users);
 
     void remove(Long id);
 }

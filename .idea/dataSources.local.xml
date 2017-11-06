@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="OrderBuddy Heroku" uuid="e99d1c30-dff8-4be4-8797-3d534e533778">
+      <database-info product="PostgreSQL" version="9.6.4" jdbc-version="4.2" driver-name="PostgreSQL JDBC Driver" driver-version="42.1.1">
+        <identifier-quote-string>&quot;</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="lower" quoted-identifiers="exact" />
+      <secret-storage>master_key</secret-storage>
+      <user-name>wgfmdvmbxitdna</user-name>
+      <introspection-schemas>d44m8ldlji0o5d:public</introspection-schemas>
+    </data-source>
+    <data-source name="OrderBuddy Local" uuid="2a3e61ea-917e-4c61-ac71-d3732d758173">
+      <database-info product="PostgreSQL" version="9.6.5" jdbc-version="4.2" driver-name="PostgreSQL JDBC Driver" driver-version="42.1.1">
+        <identifier-quote-string>&quot;</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="lower" quoted-identifiers="exact" />
+      <secret-storage>master_key</secret-storage>
+      <user-name>postgres</user-name>
+      <introspection-schemas>orderbuddy:public|postgres:</introspection-schemas>
+    </data-source>
+  </component>
+</project>

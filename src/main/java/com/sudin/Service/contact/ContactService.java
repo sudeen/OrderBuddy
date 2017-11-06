@@ -13,6 +13,7 @@ public interface ContactService {
 
     Contact save(Contact contact);
 
-    void remove(Long id);
+    Contact findByEmail(String email);
 
+    void remove(Long id);
 }
