@@ -26,7 +26,7 @@ public class RestaurantController {
     @ResponseBody
     public GlobalResponse findAllRestaurant() {
         try {
-            return BaseUtils.respond(Constant.SUCCESS_MESSAGE, "Contact List", restaurantService.findAll());
+            return BaseUtils.respond(Constant.SUCCESS_MESSAGE, "Restaurant List", restaurantService.findAll());
         } catch (Exception e) {
             e.printStackTrace();
             return BaseUtils.respond(Constant.ERROR_MESSAGE, "Failed to load", null);
