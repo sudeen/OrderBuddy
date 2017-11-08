@@ -1,15 +1,15 @@
 package com.sudin.Pojo;
 
 public class VariantPojo {
-    private Long variantsId;
+    private Long id;
     private String name;
 
-    public Long getVariantsId() {
-        return variantsId;
+    public Long getId() {
+        return id;
     }
 
-    public void setVariantsId(Long categoryId) {
-        this.variantsId = categoryId;
+    public void setId(Long categoryId) {
+        this.id = categoryId;
     }
 
     public String getName() {
