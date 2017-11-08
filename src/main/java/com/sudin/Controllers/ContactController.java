@@ -57,7 +57,7 @@ public class ContactController {
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
     @ResponseBody
-    public void deleteContact(@PathVariable Long id) {
+    public void deleteContact(@PathVariable("id") Long id) {
         contactService.remove(id);
     }
 

@@ -52,7 +52,7 @@ public class VariantController {
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
     @ResponseBody
-    public void deleteVariant(@PathVariable Long id) {
+    public void deleteVariant(@PathVariable("id") Long id) {
         variantService.remove(id);
     }
 

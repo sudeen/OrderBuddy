@@ -51,7 +51,7 @@ public class TableController {
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
     @ResponseBody
-    public void deleteTable(@PathVariable Long id) {
+    public void deleteTable(@PathVariable("id") Long id) {
         tableService.remove(id);
     }
 
