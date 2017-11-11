@@ -33,7 +33,7 @@ public class RestaurantController {
         }
     }
 
-    @RequestMapping(value = "/findById/{id}", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
+    @RequestMapping(value = "/findById/{id}", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
     @ResponseBody
     public GlobalResponse getRestaurantById(@PathVariable("id") Long id) {
         try {
@@ -44,7 +44,7 @@ public class RestaurantController {
         }
     }
 
-    @RequestMapping(value = "/save", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
+    @RequestMapping(value = "/add", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
     @ResponseBody
     public GlobalResponse saveRestaurant(@RequestBody RestaurantPojo restaurantPojo) {
         Restaurant restaurant = new Restaurant();
