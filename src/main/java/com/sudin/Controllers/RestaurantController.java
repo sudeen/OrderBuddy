@@ -47,22 +47,25 @@ public class RestaurantController {
     @RequestMapping(value = "/add", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
     @ResponseBody
     public GlobalResponse saveRestaurant(@RequestBody RestaurantPojo restaurantPojo) {
-        Restaurant restaurant = new Restaurant();
-        restaurant.setClosingTime(restaurantPojo.getClosingTime());
-        restaurant.setName(restaurantPojo.getName());
-        restaurant.setOpeningTime(restaurantPojo.getOpeningTime());
-        Contact contact = contactService.findById(restaurantPojo.getContactId());
-        restaurant.setContact(contact);
-        if (contact != null) {
-            try {
-                return BaseUtils.respond(Constant.SUCCESS_MESSAGE, "Successfully loaded", restaurantService.save(restaurant));
-            } catch (Exception e) {
-                e.printStackTrace();
-                return BaseUtils.respond(Constant.ERROR_MESSAGE, "Failed to load", null);
+        if (!restaurantPojo.getName().isEmpty()) {
+            Restaurant restaurant = new Restaurant();
+            restaurant.setClosingTime(restaurantPojo.getClosingTime());
+            restaurant.setName(restaurantPojo.getName());
+            restaurant.setOpeningTime(restaurantPojo.getOpeningTime());
+            Contact contact = contactService.findById(restaurantPojo.getContactId());
+            restaurant.setContact(contact);
+            if (contact != null) {
+                try {
+                    return BaseUtils.respond(Constant.SUCCESS_MESSAGE, "Successfully added restaurant", restaurantService.save(restaurant));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    return BaseUtils.respond(Constant.ERROR_MESSAGE, "Failed to save restaurant information", null);
+                }
+            } else {
+                return BaseUtils.respond(Constant.ERROR_MESSAGE, "Failed to save restaurant information", null);
             }
         } else {
-            System.out.println("Does not exist");
-            return BaseUtils.respond(Constant.ERROR_MESSAGE, "Failed to load", null);
+            return BaseUtils.respond(Constant.ERROR_MESSAGE, "Failed to save restaurant information", null);
         }
 
     }
