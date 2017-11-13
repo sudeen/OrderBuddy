@@ -15,7 +15,8 @@ public class Tables {
     @Column(name = "table_id")
     private Long id;
 
-    @Column(name = "capacity")
+    private String name;
+
     private int capacity;
 
     @OneToOne(cascade = CascadeType.REMOVE)
