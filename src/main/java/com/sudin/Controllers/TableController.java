@@ -63,6 +63,7 @@ public class TableController {
             try {
                 Tables tables = new Tables();
                 tables.setId(id);
+                tables.setName(BaseUtils.nullValueAlternative(tablePojo.getName(), currentTables.getName()));
                 tables.setCapacity(BaseUtils.nullValueAlternative(tablePojo.getCapacity(), currentTables.getCapacity()));
 
                 return BaseUtils.respond(Constant.SUCCESS_MESSAGE, "Tables " + id + " Updated", tableService.save(tables));
