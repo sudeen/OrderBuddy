@@ -3,7 +3,7 @@ package com.sudin.Controllers;
 
 import com.sudin.Pojo.GlobalResponse;
 import com.sudin.Service.category.CategoryService;
-import com.sudin.Service.menu.MenuService;
+import com.sudin.Service.dish.DishService;
 import com.sudin.Service.restaurant.RestaurantService;
 import com.sudin.Service.variants.VariantService;
 import com.sudin.Utils.BaseUtils;
@@ -15,11 +15,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("restaurant/{restaurantId}/menu")
-public class MenuController {
+@RequestMapping("restaurant/{restaurantId}/dish")
+public class DishController {
 
     @Autowired
-    private MenuService menuService;
+    private DishService dishService;
 
     @Autowired
     private RestaurantService restaurantService;
@@ -32,12 +32,12 @@ public class MenuController {
 
     @RequestMapping(value = "/findAll")
     @ResponseBody
-    public GlobalResponse findAllMenus(@PathVariable("restaurantId") Long restaurantId) {
+    public GlobalResponse findAllDish(@PathVariable("restaurantId") Long restaurantId) {
         // Not right........
         try {
-            return BaseUtils.respond(Constant.SUCCESS_MESSAGE, "Menu List", menuService.findAll());
+            return BaseUtils.respond(Constant.SUCCESS_MESSAGE, "Dish item List", dishService.findAll());
         } catch (Exception e) {
-            return BaseUtils.respond(Constant.ERROR_MESSAGE, "Failed to load menu", null);
+            return BaseUtils.respond(Constant.ERROR_MESSAGE, "Failed to load dish", null);
         }
     }
 

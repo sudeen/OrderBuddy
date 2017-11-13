@@ -4,7 +4,7 @@ import com.sudin.Entity.Category;
 import com.sudin.Pojo.CategoryPojo;
 import com.sudin.Pojo.GlobalResponse;
 import com.sudin.Service.category.CategoryService;
-import com.sudin.Service.menu.MenuService;
+import com.sudin.Service.dish.DishService;
 import com.sudin.Utils.BaseUtils;
 import com.sudin.Utils.Constant;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ public class CategoryController {
     CategoryService categoryService;
 
     @Autowired
-    MenuService menuService;
+    DishService dishService;
 
     @RequestMapping(value = "/findAll")
     @ResponseBody

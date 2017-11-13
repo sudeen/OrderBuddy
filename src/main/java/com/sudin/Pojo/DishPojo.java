@@ -1,6 +1,6 @@
 package com.sudin.Pojo;
 
-public class MenuPojo {
+public class DishPojo {
 
     private Long id;
     private String name;

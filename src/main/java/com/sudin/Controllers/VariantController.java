@@ -41,7 +41,7 @@ public class VariantController {
 
     @RequestMapping(value = "/add/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
     @ResponseBody
-    public GlobalResponse addVariant(@RequestBody Variants variant, @PathVariable("id") Long menuId) {
+    public GlobalResponse addVariant(@RequestBody Variants variant, @PathVariable("id") Long dishId) {
         try {
             return BaseUtils.respond(Constant.SUCCESS_MESSAGE, "Successfully added Contact", variantService.save(variant));
         } catch (Exception e) {

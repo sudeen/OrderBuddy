@@ -8,11 +8,11 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-public class Menus {
+public class Dish {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "menu_id")
+    @Column(name = "dish_id")
     private Long id;
 
     private String name;
@@ -44,7 +44,7 @@ public class Menus {
     @Column(name = "modified_date")
     private Date modifiedDate;
 
-    public Menus() {
+    public Dish() {
     }
 
     public Long getId() {
