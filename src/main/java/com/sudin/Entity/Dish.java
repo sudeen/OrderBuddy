@@ -17,7 +17,7 @@ public class Dish {
 
     private String name;
     private double price;
-    private String image;
+    private String imageUrl;
     private String ingredients;
 
     @OneToOne(cascade = CascadeType.REMOVE)
@@ -71,12 +71,12 @@ public class Dish {
         this.price = price;
     }
 
-    public String getImage() {
-        return image;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public String getIngredients() {
