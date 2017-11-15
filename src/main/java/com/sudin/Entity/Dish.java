@@ -20,17 +20,28 @@ public class Dish {
     private String imageUrl;
     private String ingredients;
 
-    @OneToOne(cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "category_id")
-    private Category category;
+//    @OneToOne(cascade = CascadeType.REMOVE)
+//    @JoinColumn(name = "category_id")
+//    private Category category;
+//
+//    @OneToOne(cascade = CascadeType.REMOVE)
+//    @JoinColumn(name = "variant_id")
+//    private Variants variety;
+//
+//    @OneToOne(cascade = CascadeType.REMOVE)
+//    @JoinColumn(name = "restaurant_id")
+//    private Restaurant restaurant;
 
-    @OneToOne(cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "variant_id")
-    private Variants variety;
+    @Column(name = "restaurant_id")
+    private Long restaurantId;
 
-    @OneToOne(cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "restaurant_id")
-    private Restaurant restaurant;
+    public Long getRestaurantId() {
+        return restaurantId;
+    }
+
+    public void setRestaurantId(Long restaurantId) {
+        this.restaurantId = restaurantId;
+    }
 
     @JsonIgnore
     @CreationTimestamp
@@ -87,28 +98,19 @@ public class Dish {
         this.ingredients = ingredients;
     }
 
-    public Category getCategory() {
-        return category;
+    public Date getCreatedDate() {
+        return createdDate;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
     }
 
-    public Variants getVariety() {
-        return variety;
+    public Date getModifiedDate() {
+        return modifiedDate;
     }
 
-    public void setVariety(Variants variety) {
-        this.variety = variety;
+    public void setModifiedDate(Date modifiedDate) {
+        this.modifiedDate = modifiedDate;
     }
-
-    public Restaurant getRestaurant() {
-        return restaurant;
-    }
-
-    public void setRestaurant(Restaurant restaurant) {
-        this.restaurant = restaurant;
-    }
-
 }

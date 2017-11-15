@@ -10,7 +10,9 @@ public interface DishService {
 
     Dish findById(Long id);
 
-    Dish save(Dish contact);
+    Dish save(Dish dish);
 
     void remove(Long id);
+
+    Dish findByIdList(List<Long> dishId);
 }

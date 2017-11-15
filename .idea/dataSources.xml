@@ -12,11 +12,11 @@
         <property name="sslfactory" value="org.postgresql.ssl.NonValidatingFactory" />
       </driver-properties>
     </data-source>
-    <data-source source="LOCAL" name="OrderBuddy Local" uuid="2a3e61ea-917e-4c61-ac71-d3732d758173">
+    <data-source source="LOCAL" name="OrderBuddy@localhost" uuid="4bb2d158-7e4b-41ea-8628-709f3d618f21">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://localhost:5432/orderbuddy</jdbc-url>
+      <jdbc-url>jdbc:postgresql://localhost:5432/OrderBuddy</jdbc-url>
       <driver-properties>
         <property name="ApplicationName" value="DataGrip" />
       </driver-properties>

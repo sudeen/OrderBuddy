@@ -26,13 +26,19 @@ public class DishServiceImpl implements DishService {
     }
 
     @Override
-    public Dish save(Dish category) {
-        return dishRepository.save(category);
+    public Dish save(Dish dish) {
+        return dishRepository.save(dish);
     }
 
     @Override
     public void remove(Long id) {
         dishRepository.delete(id);
+    }
+
+    @Override
+    public Dish findByIdList(List<Long> dishId) {
+        Dish dish= (Dish) dishRepository.findAll(dishId);
+        return dish;
     }
 
 }

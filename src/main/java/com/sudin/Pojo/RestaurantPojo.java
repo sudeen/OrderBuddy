@@ -1,11 +1,22 @@
 package com.sudin.Pojo;
 
+import java.util.List;
+
 public class RestaurantPojo {
     private Long id;
     private String name;
     private String openingTime;
     private String closingTime;
     private Long contactId;
+    private List<Long> dishId;
+
+    public List<Long> getDishId() {
+        return dishId;
+    }
+
+    public void setDishId(List<Long> dishId) {
+        this.dishId = dishId;
+    }
 
     public Long getId() {
         return id;

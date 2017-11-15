@@ -1,16 +1,20 @@
 package com.sudin.Controllers;
 
 import com.sudin.Entity.Contact;
+import com.sudin.Entity.Dish;
 import com.sudin.Entity.Restaurant;
 import com.sudin.Pojo.GlobalResponse;
 import com.sudin.Pojo.RestaurantPojo;
 import com.sudin.Service.contact.ContactService;
+import com.sudin.Service.dish.DishService;
 import com.sudin.Service.restaurant.RestaurantService;
 import com.sudin.Utils.BaseUtils;
 import com.sudin.Utils.Constant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/restaurant")
@@ -21,6 +25,9 @@ public class RestaurantController {
 
     @Autowired
     private ContactService contactService;
+
+    @Autowired
+    private DishService dishService;
 
     @RequestMapping(value = "/findAll")
     @ResponseBody
@@ -53,7 +60,9 @@ public class RestaurantController {
             restaurant.setName(restaurantPojo.getName());
             restaurant.setOpeningTime(restaurantPojo.getOpeningTime());
             Contact contact = contactService.findById(restaurantPojo.getContactId());
+            List<Dish> dish= (List<Dish>) dishService.findByIdList(restaurantPojo.getDishId());
             restaurant.setContact(contact);
+            restaurant.setDishList(dish);
             if (contact != null) {
                 try {
                     return BaseUtils.respond(Constant.SUCCESS_MESSAGE, "Successfully added restaurant", restaurantService.save(restaurant));
@@ -91,6 +100,12 @@ public class RestaurantController {
                 // TODO: 11/5/17 Update multiple contacts??
                 Contact contact = contactService.findById(restaurantPojo.getContactId());
                 restaurant.setContact(contact);
+
+                List<Dish> dish= (List<Dish>) dishService.findByIdList(restaurantPojo.getDishId());
+//                for (Object d : dish){
+//
+//                }
+                restaurant.setDishList(dish);
 
                 return BaseUtils.respond(Constant.SUCCESS_MESSAGE, "Restaurant id " + id + " Updated", restaurantService.save(restaurant));
             } catch (Exception e) {

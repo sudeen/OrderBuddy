@@ -6,6 +6,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Restaurant {
@@ -34,6 +35,10 @@ public class Restaurant {
     @OneToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "contact_id")
     private Contact contact;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="restaurant_id",referencedColumnName = "restaurant_id")
+    private List<Dish> dishList;
 
     public Restaurant() {
     }
@@ -76,5 +81,13 @@ public class Restaurant {
 
     public void setContact(Contact contact) {
         this.contact = contact;
+    }
+
+    public List<Dish> getDishList() {
+        return dishList;
+    }
+
+    public void setDishList(List<Dish> dishList) {
+        this.dishList = dishList;
     }
 }
