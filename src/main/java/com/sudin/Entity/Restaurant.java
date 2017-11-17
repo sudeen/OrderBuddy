@@ -36,7 +36,7 @@ public class Restaurant {
     @JoinColumn(name = "contact_id")
     private Contact contact;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.REMOVE)
     @JoinColumn(name="restaurant_id",referencedColumnName = "restaurant_id")
     private List<Dish> dishList;
 

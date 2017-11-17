@@ -18,6 +18,9 @@ public class Variants {
     @Column(unique = true)
     private String name;
 
+    @Column(name = "dish_id")
+    private Long dishId;
+
     @JsonIgnore
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
@@ -49,4 +52,11 @@ public class Variants {
         this.name = name;
     }
 
+    public Long getDishId() {
+        return dishId;
+    }
+
+    public void setDishId(Long dishId) {
+        this.dishId = dishId;
+    }
 }

@@ -6,6 +6,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Dish {
@@ -20,28 +21,16 @@ public class Dish {
     private String imageUrl;
     private String ingredients;
 
-//    @OneToOne(cascade = CascadeType.REMOVE)
-//    @JoinColumn(name = "category_id")
-//    private Category category;
-//
-//    @OneToOne(cascade = CascadeType.REMOVE)
-//    @JoinColumn(name = "variant_id")
-//    private Variants variety;
-//
-//    @OneToOne(cascade = CascadeType.REMOVE)
-//    @JoinColumn(name = "restaurant_id")
-//    private Restaurant restaurant;
+    @OneToOne(cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "category_id")
+    private Category category;
+
+    @OneToMany(cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "dish_id", referencedColumnName = "dish_id")
+    private List<Variants> variantsList;
 
     @Column(name = "restaurant_id")
     private Long restaurantId;
-
-    public Long getRestaurantId() {
-        return restaurantId;
-    }
-
-    public void setRestaurantId(Long restaurantId) {
-        this.restaurantId = restaurantId;
-    }
 
     @JsonIgnore
     @CreationTimestamp
@@ -98,19 +87,27 @@ public class Dish {
         this.ingredients = ingredients;
     }
 
-    public Date getCreatedDate() {
-        return createdDate;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
-    public Date getModifiedDate() {
-        return modifiedDate;
+    public List<Variants> getVariantsList() {
+        return variantsList;
     }
 
-    public void setModifiedDate(Date modifiedDate) {
-        this.modifiedDate = modifiedDate;
+    public void setVariantsList(List<Variants> variantsList) {
+        this.variantsList = variantsList;
+    }
+
+    public Long getRestaurantId() {
+        return restaurantId;
+    }
+
+    public void setRestaurantId(Long restaurantId) {
+        this.restaurantId = restaurantId;
     }
 }
